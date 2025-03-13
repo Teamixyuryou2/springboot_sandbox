@@ -30,6 +30,23 @@ public class Warrior {
         return this.hp;
     }
 
+    public int getDexterity() {
+        return dexterity;
+    }
+    public int getIntelligence() {
+        return intelligence;
+    }
+    public int getWisdom() {
+        return wisdom;
+    }
+    public int getCharisma() {
+        return charisma;
+    }
+    public int getAgility() {
+        return agility;
+    }
+
+
     public void takeDamage(int damage) {
         this.hp -= damage;
     }
