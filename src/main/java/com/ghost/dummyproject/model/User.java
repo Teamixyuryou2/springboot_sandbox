@@ -21,4 +21,12 @@ public class User {
     private String image;
     private String profilepicture;
 
+    public User(String names, String bio, String image, String profilepicture) {
+        this.names = names;
+        this.bio = bio;
+        this.image = image;
+        this.profilepicture = profilepicture;
+
+    }
+
 }
