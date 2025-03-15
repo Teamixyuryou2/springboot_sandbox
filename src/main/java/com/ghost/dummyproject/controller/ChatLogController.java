@@ -2,12 +2,13 @@ package com.ghost.dummyproject.controller;
 
 
 import com.ghost.dummyproject.model.ChatLog;
+import com.ghost.dummyproject.model.MessageHistory;
 import com.ghost.dummyproject.repository.ChatLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ChatLogController {
@@ -15,12 +16,19 @@ public class ChatLogController {
     ChatLogRepository chatlogRepository;
 
     @RequestMapping(value = "/chatlog", method = RequestMethod.POST)
-    public String startChatLog(@RequestParam String userid,
+    public String startChatLog(@RequestParam String chatid,
+                               @RequestParam String userid,
                                @RequestParam String recipientid,
                                @RequestParam(required = false)String lastmessage) {
-        ChatLog chatlog = new ChatLog(userid, recipientid, lastmessage);
+        ChatLog chatlog = new ChatLog(chatid, userid, recipientid, lastmessage);
         ChatLog savedChat = chatlogRepository.save(chatlog);
         return "SUCCESS, NEW CHATLOG STARTED : " + savedChat;
-    };
+    }
+
+    @RequestMapping(value = "/chatlog/get", method = RequestMethod.GET)
+    public ChatLog getChatLog(@RequestParam String chatid) {
+        ChatLog chatlog = chatlogRepository.findById(chatid).orElse(null);   //Optional to avoid break, first we get the whole of Chatlog
+        return chatlog;
+    }
 
 }
