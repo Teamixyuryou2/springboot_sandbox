@@ -27,7 +27,7 @@ public class ChatLogController {
 
     @RequestMapping(value = "/chatlog/get", method = RequestMethod.GET)
     public ChatLog getChatLog(@RequestParam String chatid) {
-        ChatLog chatlog = chatlogRepository.findById(chatid).orElse(null);   //Optional to avoid break, first we get the whole of Chatlog
+        ChatLog chatlog = chatlogRepository.findById(chatid).orElse(null);   //Returns chatlog with chatid
         return chatlog;
     }
 
