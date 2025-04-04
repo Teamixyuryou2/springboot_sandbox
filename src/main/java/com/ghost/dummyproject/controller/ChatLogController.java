@@ -30,5 +30,4 @@ public class ChatLogController {
         ChatLog chatlog = chatlogRepository.findById(chatid).orElse(null);   //Returns chatlog with chatid
         return chatlog;
     }
-
 }
